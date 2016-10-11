@@ -17,4 +17,4 @@ document.addEventListener("turbolinks:load", function() {
       $(".fa-caret-up").toggle();
     }
   })
-})
+});

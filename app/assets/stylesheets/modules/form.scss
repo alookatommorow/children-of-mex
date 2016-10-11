@@ -59,6 +59,7 @@ form {
     outline: none;
     -webkit-appearance: none;
     tap-highlight-color: rgba(255, 255, 255, 0);
+
     line-height: 1.2142em;
     padding: 0.67861429em 1em;
     font-size: 1em;
@@ -69,6 +70,10 @@ form {
     box-shadow: 0em 0em 0em 0em transparent inset;
     -webkit-transition: color 0.1s ease, border-color 0.1s ease;
     transition: color 0.1s ease, border-color 0.1s ease;
+
+    &:focus {
+      border: 1px solid rgba(109, 183, 247, 1);
+    }
 
     &.error {
       background: #fff6f6;
