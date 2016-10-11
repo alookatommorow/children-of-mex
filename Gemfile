@@ -5,15 +5,19 @@ gem "rails", "5.0.0.1"
 
 gem "awesome_print"
 gem "bcrypt"
-gem "coffee-rails"
+gem "font-awesome-rails"
 gem "jquery-rails"
 gem "pg"
 gem "sass-rails"
+gem "sprockets-rails"
 gem "turbolinks"
 gem "uglifier"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+group :assets do
+  gem "coffee-rails"
+end
 
 group :development, :test do
   gem "bundler-audit", require: false
