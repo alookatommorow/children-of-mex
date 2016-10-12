@@ -7,37 +7,16 @@ class DonationsController < ApplicationController
   end
 
   def create
-    @donation = Donation.where(email: donation_params[:email]).take
-    donor = stripe_customer
-    Stripe::Charge.create(
+
+    StripeCharger.new(
+      email: donation_params[:email],
       amount: donation_params[:amount_in_cents],
-      currency: "usd",
-      customer: donor.id,
-      description: "Donation to Children of Mexico International"
-    )
+      token: params[:stripe_token]
+    ).create_charge
     Donation.create(donation_params)
   end
 
   private
-
-    def stripe_customer
-      if @donation
-        retrieve_stripe_customer
-      else
-        create_stripe_customer
-      end
-    end
-
-    def create_stripe_customer
-      customer = Stripe::Customer.create(email: donation_params[:email])
-      card = customer.sources.create(source: params[:stripe_token])
-      customer.default_source = card.id
-      customer
-    end
-
-    def retrieve_stripe_customer
-      Stripe::Customer.retrieve(@donation.stripe_customer_id)
-    end
 
     def donation_params
       params.require(:donation).permit(:email, :amount_in_cents)
