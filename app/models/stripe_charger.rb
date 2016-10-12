@@ -1,4 +1,6 @@
 class StripeCharger
+  attr_reader :customer_id
+
   def initialize(email:, amount:, token:)
     @email = email
     @amount = amount
@@ -19,6 +21,7 @@ class StripeCharger
 
     def stripe_customer
       if @donation
+        @customer_id = @donation.stripe_customer_id
         retrieve_stripe_customer
       else
         create_stripe_customer
@@ -29,6 +32,7 @@ class StripeCharger
       customer = Stripe::Customer.create(email: @email)
       card = customer.sources.create(source: @token)
       customer.default_source = card.id
+      @customer_id = customer.id
       customer
     end
 

@@ -7,13 +7,17 @@ class DonationsController < ApplicationController
   end
 
   def create
-
-    StripeCharger.new(
+    stripe_charger = StripeCharger.new(
       email: donation_params[:email],
       amount: donation_params[:amount_in_cents],
       token: params[:stripe_token]
-    ).create_charge
-    Donation.create(donation_params)
+    )
+    stripe_charger.create_charge
+    Donation.create(
+      email: donation_params[:email],
+      amount_in_cents: donation_params[:amount_in_cents],
+      stripe_customer_id: stripe_charger.customer_id
+    )
   end
 
   private
