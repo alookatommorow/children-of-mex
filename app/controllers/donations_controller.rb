@@ -10,7 +10,7 @@ class DonationsController < ApplicationController
     @donation = Donation.where(email: donation_params[:email]).take
     donor = stripe_customer
     Stripe::Charge.create(
-      amount: donation_params[:amount_in_cents,
+      amount: donation_params[:amount_in_cents],
       currency: "usd",
       customer: donor.id,
       description: "Donation to Children of Mexico International"
