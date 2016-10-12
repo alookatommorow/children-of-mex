@@ -15,6 +15,7 @@ class StripeCharger
       customer: stripe_customer.id,
       description: "Donation to Children of Mexico International"
     )
+    self
   end
 
   private
@@ -29,11 +30,11 @@ class StripeCharger
     end
 
     def create_stripe_customer
-      customer = Stripe::Customer.create(email: @email)
-      card = customer.sources.create(source: @token)
-      customer.default_source = card.id
-      @customer_id = customer.id
-      customer
+      Stripe::Customer.create(email: @email).tap do |sc|
+        card = sc.sources.create(source: @token)
+        sc.default_source = card.id
+        @customer_id = sc.id
+      end
     end
 
     def retrieve_stripe_customer

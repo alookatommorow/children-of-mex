@@ -11,8 +11,8 @@ class DonationsController < ApplicationController
       email: donation_params[:email],
       amount: donation_params[:amount_in_cents],
       token: params[:stripe_token]
-    )
-    stripe_charger.create_charge
+    ).create_charge
+
     Donation.create(
       email: donation_params[:email],
       amount_in_cents: donation_params[:amount_in_cents],

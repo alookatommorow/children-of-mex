@@ -43,5 +43,16 @@ RSpec.describe StripeCharger do
         description: "Donation to Children of Mexico International",
       )
     end
+
+    it "returns self" do
+      email = "palpatine@darkside.com"
+
+      stub_create_customer
+      stub_charge
+
+      stripe_charger = StripeCharger.new(email: email, amount: "100", token: "THISISATOKEN").create_charge
+
+      expect(stripe_charger).to be_a(StripeCharger)
+    end
   end
 end
