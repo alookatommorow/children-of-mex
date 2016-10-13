@@ -1,4 +1,10 @@
 document.addEventListener("turbolinks:load", function() {
+  $(".cancel-donation").click(function() {
+    $(".confirmation").fadeOut(function() {
+      $("input[name=amount]").val("");
+      $(".amount-form").fadeIn();
+    });
+  });
 
   $(".amount-form").submit(function (event) {
     event.preventDefault();
@@ -14,7 +20,7 @@ document.addEventListener("turbolinks:load", function() {
       });
 
       var handler = StripeCheckout.configure({
-        key: 'pk_test_9ZLVR6WahevanGUdzzu5qp5f',
+        key: '<%= ENV.fetch("STRIPE_PUBLIC") %>',
         image: 'https://s3-us-west-1.amazonaws.com/children-of-mexico/icon-padded.svg',
         locale: 'auto',
         zipCode: true,
