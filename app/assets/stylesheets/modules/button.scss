@@ -34,6 +34,28 @@
     }
   }
 
+  &.negative {
+    background-color: #DB2828;
+    color: #FFFFFF;
+    text-shadow: none;
+    background-image: none;
+
+    &:hover {
+      background-color: #d01919;
+    }
+  }
+
+  &.positive {
+    background-color: #21BA45;
+    color: #FFFFFF;
+    text-shadow: none;
+    background-image: none;
+
+    &:hover {
+      background-color: #16ab39;
+    }
+  }
+
   &.red {
     background-color: #db2828;
     color: #ffffff;
