@@ -1,0 +1,52 @@
+<div class="page-wrapper">
+  <div class="well donate">
+    <h1>
+      <div class="horizontal divider">Donate</div>
+    </h1>
+    <form class="amount-form">
+      <h3>Please enter a donation amount</h3>
+      <div class="field">
+        <label class="label" for="name">Amount<span class="asterisk">*</span></label>
+        <div class="amount-field">
+          <i class="fa fa-usd"></i>
+          <input type="text" placeholder="25" name="amount" class="validate amount">
+        </div>
+      </div>
+      <input type="submit" value="Checkout" class="basic-button primary">
+      <div class="error user-message"></div>
+    </form>
+    <div class="confirmation">
+      <div class="confirmation-text">
+        <div class="logo">
+          <img src="https://s3-us-west-1.amazonaws.com/children-of-mexico/icon-padded.svg">
+        </div>
+        <div>
+          <h3>Thank you. Your card will be charged $<span class="confirm-amount"></span></h3>
+        </div>
+      </div>
+      <div class="confirmation-buttons">
+
+        <button id="donate-button" class="basic-button primary">Pay With Card</button>
+
+        <h3>
+          <div class="horizontal divider">Or</div>
+        </h3>
+        <button class="basic-button">Cancel</button>
+      </div>
+    </div>
+    <script src="https://checkout.stripe.com/checkout.js"></script>
+
+    <!-- <form action="/your-server-side-code" method="POST">
+      <script
+        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+        data-key="pk_test_9ZLVR6WahevanGUdzzu5qp5f"
+        data-amount="999"
+        data-name="Children of Mexico"
+        data-description="Payment"
+        data-image="https://s3-us-west-1.amazonaws.com/children-of-mexico/icon.svg"
+        data-locale="auto">
+      </script>
+    </form> -->
+
+  </div>
+</div>

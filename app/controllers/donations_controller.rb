@@ -7,6 +7,9 @@ class DonationsController < ApplicationController
   end
 
   def create
+    p "*"*100
+    p params
+    p "*"*100
     stripe_charger = StripeCharger.new(
       email: donation_params[:email],
       amount: donation_params[:amount_in_cents],
