@@ -1,75 +1,67 @@
 document.addEventListener("turbolinks:load", function() {
-  $(".cancel-donation").click(function() {
-    $(".confirmation").fadeOut(function() {
-      $("input[name=amount]").val("");
-      $(".amount-form").fadeIn();
-    });
-  });
 
-  $(".amount-form").submit(function (event) {
-    event.preventDefault();
-    var validation = new FormValidator(this).validateForm();
-    var amount = $("input[name=amount]").val()
-    var parsedAmount = parseFloat(amount) * 100;
-    console.log(amount);
+  if (window.location.pathname === "/donations/new") {
 
-    if (validation) {
-      $(".confirm-amount").text(amount);
-      $(this).fadeOut(function() {
-        $(".confirmation").fadeIn();
-      });
-
-      var handler = StripeCheckout.configure({
-        key: '<%= ENV.fetch("STRIPE_PUBLIC") %>',
-        image: 'https://s3-us-west-1.amazonaws.com/children-of-mexico/icon-padded.svg',
-        locale: 'auto',
-        zipCode: true,
-        billingAddress: true,
-        token: function(token) {
-          var data =  {
-            stripe_token: token.id,
-            donation: {
-              amount_in_cents: parsedAmount,
-              email: token.email
-            }
+    // configure stripe handler
+    var handler = StripeCheckout.configure({
+      key: '<%= ENV.fetch("STRIPE_PUBLIC") %>',
+      image: 'https://s3-us-west-1.amazonaws.com/children-of-mexico/icon-padded.png',
+      locale: 'auto',
+      zipCode: true,
+      billingAddress: true,
+      token: function(token) {
+        var data =  {
+          stripe_token: token.id,
+          donation: {
+            amount_in_cents: parsedAmount,
+            email: token.email
           }
-          $.post("/donations", data).done(function() {
-            console.log("charge created")
-          });
         }
-      });
-
-      document.getElementById('donate-button').addEventListener('click', function(e) {
-        // Open Checkout with further options:
-        handler.open({
-          name: 'Children of Mexico International',
-          description: 'Donation',
-          amount: parsedAmount
+        $.post("/donations", data).done(function() {
+          console.log("charge created");
         });
-        e.preventDefault();
+      }
+    });
+
+    // close handler on cancel button click to prevent multiple payment modals
+    $(".cancel-donation").click(function() {
+      handler.close();
+
+      $(".confirmation").fadeOut(function() {
+        $("input[name=amount]").val("");
+        $(".amount-form").fadeIn();
       });
+    });
 
-      // Close Checkout on page navigation:
-      window.addEventListener('popstate', function() {
-        handler.close();
-      });
+    $(".amount-form").submit(function (event) {
+      event.preventDefault();
 
+      var validation = new FormValidator(this).validateForm();
+      var amount = $("input[name=amount]").val()
+      var parsedAmount = parseFloat(amount) * 100;
 
-      // $.ajax({
-      //     url: this.action,
-      //     method: this.method,
-      //     data: data,
-      //     dataType: "json"
-      // })
-      // .done(formSuccess)
-      // .fail(function(response){
-      //   console.log("error", response);
-      // });
-    } else {
-      // $(".contact-button").attr("disabled", false).val("Send").css("cursor", "pointer");
-    }
-  });
+      if (validation) {
+        $(".confirm-amount").text(amount);
+        $(this).fadeOut(function() {
+          $(".confirmation").fadeIn();
+        });
 
+        $("#donate-button").click(function(event) {
+          event.preventDefault();
+          // Open Checkout with further options:
+          handler.open({
+            name: 'Children of Mexico International',
+            description: 'Donation',
+            amount: parsedAmount
+          });
+        });
+      }
+    });
 
+    // Close Checkout on page navigation:
+    window.addEventListener('popstate', function() {
+      handler.close();
+    });
+  }
 
 });
