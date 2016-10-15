@@ -1,0 +1,23 @@
+.donate-button {
+  position: fixed;
+  top: 90px;
+  right: 15px;
+  z-index: 9999;
+  color: #FFFFFF;
+
+  .basic-button {
+    margin: 0;
+  }
+
+  @include media-query($on-palm) {
+    top: 100px;
+    right: 0;
+    width: 100%;
+    z-index: 99;
+
+    .basic-button {
+      width: 100%;
+      border-radius: 0;
+    }
+  }
+}
