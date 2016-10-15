@@ -127,8 +127,28 @@ form {
       color: #2C662D;
       text-align: center
   }
-}
 
+  .header {
+    display: block;
+    font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    margin: -0.14285em 0em 0rem 0em;
+    font-size: 1.14285714em;
+
+    p {
+      opacity: 0.85;
+      margin: 0.75em 0em;
+
+      &:first-child {
+        margin-top: 0em;
+      }
+
+      p:last-child {
+        margin-bottom: 0em;
+      }
+    }
+  }
+}
 
 
 

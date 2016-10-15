@@ -7,20 +7,19 @@ class DonationsController < ApplicationController
   end
 
   def create
-    p "*"*100
-    p params
-    p "*"*100
     stripe_charger = StripeCharger.new(
       email: donation_params[:email],
       amount: donation_params[:amount_in_cents],
       token: params[:stripe_token]
     ).create_charge
 
-    Donation.create(
+    @donation = Donation.create(
       email: donation_params[:email],
       amount_in_cents: donation_params[:amount_in_cents],
       stripe_customer_id: stripe_charger.customer_id
     )
+
+    render partial: "/donations/success", locals: { donation: @donation }
   end
 
   private

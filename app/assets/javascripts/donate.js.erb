@@ -1,37 +1,7 @@
 document.addEventListener("turbolinks:load", function() {
 
   if (window.location.pathname === "/donations/new") {
-
-    // configure stripe handler
-    var handler = StripeCheckout.configure({
-      key: '<%= ENV.fetch("STRIPE_PUBLIC") %>',
-      image: 'https://s3-us-west-1.amazonaws.com/children-of-mexico/icon-padded.png',
-      locale: 'auto',
-      zipCode: true,
-      billingAddress: true,
-      token: function(token) {
-        var data =  {
-          stripe_token: token.id,
-          donation: {
-            amount_in_cents: parsedAmount,
-            email: token.email
-          }
-        }
-        $.post("/donations", data).done(function() {
-          console.log("charge created");
-        });
-      }
-    });
-
-    // close handler on cancel button click to prevent multiple payment modals
-    $(".cancel-donation").click(function() {
-      handler.close();
-
-      $(".confirmation").fadeOut(function() {
-        $("input[name=amount]").val("");
-        $(".amount-form").fadeIn();
-      });
-    });
+    var handler;
 
     $(".amount-form").submit(function (event) {
       event.preventDefault();
@@ -40,6 +10,30 @@ document.addEventListener("turbolinks:load", function() {
       var amount = $("input[name=amount]").val()
       var parsedAmount = parseFloat(amount) * 100;
 
+      // configure stripe handler
+      handler = StripeCheckout.configure({
+        key: '<%= ENV.fetch("STRIPE_PUBLIC") %>',
+        image: 'https://s3-us-west-1.amazonaws.com/children-of-mexico/icon-padded.png',
+        locale: 'auto',
+        zipCode: true,
+        billingAddress: true,
+        token: function(token) {
+          var data =  {
+            stripe_token: token.id,
+            donation: {
+              amount_in_cents: parsedAmount,
+              email: token.email
+            }
+          }
+          $(".confirmation").hide();
+          showLoader();
+          $.post("/donations", data).done(function(response) {
+            $(".donation-success").html(response);
+          });
+        }
+      });
+
+      // if amount entered
       if (validation) {
         $(".confirm-amount").text(amount);
         $(this).fadeOut(function() {
@@ -56,6 +50,16 @@ document.addEventListener("turbolinks:load", function() {
           });
         });
       }
+
+      // close handler on cancel button click to prevent multiple payment modals
+      $(".cancel-donation").click(function() {
+        handler.close();
+
+        $(".confirmation").fadeOut(function() {
+          $("input[name=amount]").val("");
+          $(".amount-form").fadeIn();
+        });
+      });
     });
 
     // Close Checkout on page navigation:
@@ -63,5 +67,8 @@ document.addEventListener("turbolinks:load", function() {
       handler.close();
     });
   }
-
 });
+
+function showLoader() {
+  $(".loading-container").show()
+}
