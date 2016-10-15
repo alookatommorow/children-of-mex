@@ -11,6 +11,7 @@ gem "pg"
 gem "puma"
 gem "sass-rails"
 gem "sprockets-rails"
+gem "stripe"
 gem "turbolinks"
 gem "uglifier"
 

@@ -1,10 +1,3 @@
-
-
-function formSuccess() {
-  $(".contact-form").hide();
-  $(".user-message.success").show()
-}
-
 var validationTypes = {
 
   name: {
@@ -22,6 +15,12 @@ var validationTypes = {
   message: {
     prompt: 'Please enter a message',
     counterpart: "textarea",
+    validator: "empty"
+  },
+
+  amount: {
+    prompt: "Please enter an amount",
+    counterpart: "[placeholder='25']",
     validator: "empty"
   }
 }

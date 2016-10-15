@@ -16,8 +16,6 @@
   box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
 }
 
-
-
 .circle-container {
   padding: 3px;
 
@@ -37,8 +35,6 @@
     }
   }
 }
-
-
 
 .section-header {
   text-align: center;
@@ -137,6 +133,10 @@ input, textarea {
  */
 .page-content {
   margin-top: 100px;
+
+  @include media-query($on-palm) {
+    margin-top: 141px;
+  }
 }
 
 .page-heading {
