@@ -1,0 +1,2 @@
+class DonationMailer < ApplicationMailer
+end
