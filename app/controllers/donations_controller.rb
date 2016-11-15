@@ -16,7 +16,8 @@ class DonationsController < ApplicationController
     @donation = Donation.create(
       email: donation_params[:email],
       amount_in_cents: donation_params[:amount_in_cents],
-      stripe_customer_id: stripe_charger.customer_id
+      name: donation_params[:name],
+      stripe_customer_id: stripe_charger.customer_id,
     )
 
     render partial: "/donations/success", locals: { donation: @donation }
@@ -25,6 +26,6 @@ class DonationsController < ApplicationController
   private
 
     def donation_params
-      params.require(:donation).permit(:email, :amount_in_cents)
+      params.require(:donation).permit(:email, :amount_in_cents, :name)
     end
 end
