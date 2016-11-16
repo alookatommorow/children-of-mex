@@ -1,0 +1,22 @@
+<div style="width:80%;margin:auto;">
+  <div style="text-align:center">
+    <img src="https://s3-us-west-1.amazonaws.com/children-of-mexico/logo-horizontal.png" style="width:35%;">
+  </div>
+  <p>Dear <%= @donation.name %>,</p>
+
+  <p>On behalf of Children of Mexico International, I would like to thank you for your generous gift of <%= number_to_currency(@donation.to_dollars) %>.  Your commitment to helping our cause is sincerely appreciated.</p>
+
+  <p>Each year Children of Mexico International continues to advance its mission of enhancing the lives of children and young adults by sharing evidence-based communication techniques, therapy materials and equipment, education and research to serve those with a need. Through our work, we have seen many lives changed for the better.  We hope for your continued support in the future.</p>
+
+  <p>Thank you again for your gift of <%= number_to_currency(@donation.to_dollars) %> to Children of Mexico International.  Children of Mexico International is a 501(c)(3) organization.  Your contribution is tax deductible to the extent allowed by the law.  Please keep this written acknowledgment of your donation for your tax records. Children of Mexico International Tax ID # 26-4583547.
+  Once again, thank you for your generous donation.</p>
+
+  Sincerely,<br>
+  Margarita Fajardo<br>
+  President<br>
+  Children of Mexico International<br>
+</div>
+
+<style>
+
+</style>

@@ -7,7 +7,8 @@ document.addEventListener("turbolinks:load", function() {
       event.preventDefault();
 
       var validation = new FormValidator(this).validateForm();
-      var amount = $("input[name=amount]").val()
+      var amount = $("input[name=amount]").val();
+      var name = $("input[name=amount]").val();
       var parsedAmount = parseFloat(amount) * 100;
 
       // configure stripe handler
@@ -17,12 +18,13 @@ document.addEventListener("turbolinks:load", function() {
         locale: 'auto',
         zipCode: true,
         billingAddress: true,
-        token: function(token) {
+        token: function(token, billing) {
           var data =  {
             stripe_token: token.id,
             donation: {
               amount_in_cents: parsedAmount,
-              email: token.email
+              email: token.email,
+              name: billing.billing_name
             }
           }
           $(".confirmation").hide();
