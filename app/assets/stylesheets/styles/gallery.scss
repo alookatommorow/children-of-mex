@@ -3,17 +3,19 @@
   .standard-menu {
     width: 400px;
     margin: 0 auto;
+    text-align: center;
 
     .item {
       flex-grow: 1;
-      padding-left: 18%;
+      padding-left: 10%;
     }
   }
 
   .gallery-content {
     margin-top: 20px;
 
-    #photo, #video {
+
+    #photo, #video, #press {
       display: none;
       text-align: center;
 
@@ -27,6 +29,15 @@
 
       .mobile-video {
         display: none;
+      }
+    }
+
+    #press {
+      a {
+        display: block;
+        margin: 10px;
+        text-decoration: none;
+        color: $blue;
       }
     }
 
@@ -136,10 +147,10 @@
     padding: 8px;
 
     .standard-menu {
-      width: 200px;
+      width: 290px;
 
       .item {
-        padding-left: 12%;
+        padding-left: 8%;
       }
     }
 
