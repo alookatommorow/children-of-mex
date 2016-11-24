@@ -10,17 +10,21 @@
   .footer-items {
     display: flex;
     align-items: center;
-    justify-content: space-around;
     width: 60%;
     margin: 10px auto 30px auto;
 
+    img, .fb-button {
+      flex: 1;
+      text-align: center;
+    }
+
     a {
-      text-decoration: none;
       color: $background-color;
       display: flex;
       align-items: center;
       justify-content: space-around;
-      width: 300px;
+      width: 250px;
+      margin: 0 auto;
     }
   }
 
@@ -33,6 +37,31 @@
   }
 
   img {
-    height: 150px;
+    width: 300px;
+  }
+
+  @include media-query($tablet) {
+    bottom: -270px;
+
+    .footer-items {
+      display: block;
+
+      .fb-button {
+        margin-top: 20px;
+
+
+      }
+    }
+  }
+
+  @include media-query($on-palm) {
+    bottom: -290px;
+
+    .footer-items {
+
+      .fb-button a {
+        width: 180px;
+      }
+    }
   }
 }
