@@ -1,0 +1,67 @@
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: -210px;
+  left: 0;
+  padding: 1rem;
+  background-color: $grey-color-light;
+  text-align: center;
+
+  .footer-items {
+    display: flex;
+    align-items: center;
+    width: 60%;
+    margin: 10px auto 30px auto;
+
+    img, .fb-button {
+      flex: 1;
+      text-align: center;
+    }
+
+    a {
+      color: $background-color;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      width: 250px;
+      margin: 0 auto;
+    }
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  p {
+    margin-bottom: 3px;
+  }
+
+  img {
+    width: 300px;
+  }
+
+  @include media-query($tablet) {
+    bottom: -270px;
+
+    .footer-items {
+      display: block;
+
+      .fb-button {
+        margin-top: 20px;
+
+
+      }
+    }
+  }
+
+  @include media-query($on-palm) {
+    bottom: -290px;
+
+    .footer-items {
+
+      .fb-button a {
+        width: 180px;
+      }
+    }
+  }
+}
