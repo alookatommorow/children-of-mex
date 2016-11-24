@@ -1,0 +1,38 @@
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: -210px;
+  left: 0;
+  padding: 1rem;
+  background-color: $grey-color-light;
+  text-align: center;
+
+  .footer-items {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 60%;
+    margin: 10px auto 30px auto;
+
+    a {
+      text-decoration: none;
+      color: $background-color;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      width: 300px;
+    }
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  p {
+    margin-bottom: 3px;
+  }
+
+  img {
+    height: 150px;
+  }
+}
