@@ -11,6 +11,10 @@ function ImageRotator() {
     interval = setInterval(cycleImages, 5000);
   }
 
+  this.stop = function() {
+    clearInterval(interval);
+  }
+
   function animate(url) {
     $container.fadeOut(700, function() {
       $container.css('background-image', 'url('+url+')');

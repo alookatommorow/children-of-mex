@@ -1,5 +1,17 @@
+var rotatorRunning = false,
+    rotator;
+
 document.addEventListener("turbolinks:load", function() {
   if (window.location.pathname === "/") {
-    new ImageRotator().init();
+    rotator = new ImageRotator();
+    rotator.init();
+    rotatorRunning = true;
+  } else {
+    if (rotatorRunning) {
+      rotator.stop();
+      rotatorRunning = false;
+    }
   }
 })
+
+
