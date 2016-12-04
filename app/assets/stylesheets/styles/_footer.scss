@@ -1,7 +1,7 @@
 .footer {
   position: absolute;
   right: 0;
-  bottom: -210px;
+  bottom: -230px;
   left: 0;
   padding: 1rem;
   background-color: $grey-color-light;
@@ -30,6 +30,7 @@
 
   a {
     text-decoration: none;
+    color: $blue;
   }
 
   p {
