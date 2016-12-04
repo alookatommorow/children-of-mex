@@ -234,6 +234,13 @@ h1 {
     }
 }
 
+img {
+   -ms-user-select: none;      /* IE 10+ */
+   -moz-user-select: none;     /* Firefox all */
+   -webkit-user-select: none;  /* Chrome all / Safari all */
+   user-select: none;          /* Likely future */
+}
+
 
 
 /**
