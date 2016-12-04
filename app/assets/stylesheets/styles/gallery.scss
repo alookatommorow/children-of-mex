@@ -200,19 +200,27 @@
 
         .photo-display {
 
-          i {
-            font-size: 30px;
-            line-height: 30px;
-            top: 25%;
+          .carousel-button {
+            top: 30%;
+            width: 18px;
+            transform: translateY(-30%);
 
-            &.prev {
-              left: -5px;
+            i {
+              font-size: 30px;
+              line-height: 30px;
+
+
+              &.prev {
+                left: -5px;
+              }
+
+              &.next {
+                right: -5px;
+              }
             }
 
-            &.next {
-              right: -5px;
-            }
           }
+
 
           .carousel-image-container {
             height: 320px;
