@@ -1,13 +1,22 @@
 .well.gallery {
 
-  .standard-menu {
-    width: 400px;
+  .gallery-menu {
+    width: 300px;
     margin: 0 auto;
-    text-align: center;
+    min-height: 2.85714286em;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 
     .item {
-      flex-grow: 1;
-      padding-left: 10%;
+      width: 25%;
+      text-align: center;
+      justify-content: center;
+      font-size: 18px;
+
+      &.active {
+        border-bottom: 2px solid $red;
+      }
     }
   }
 
@@ -157,12 +166,8 @@
   @include media-query($on-palm) {
     padding: 8px;
 
-    .standard-menu {
-      width: 290px;
-
-      .item {
-        padding-left: 8%;
-      }
+    .gallery-menu {
+      width: 270px;
     }
 
     .gallery-content {
