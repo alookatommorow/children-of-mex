@@ -1,0 +1,48 @@
+.well.gallery {
+
+  .gallery-menu {
+    width: 300px;
+    margin: 0 auto;
+    min-height: 2.85714286em;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    .item {
+      width: 25%;
+      text-align: center;
+      justify-content: center;
+      font-size: 18px;
+
+      &.active {
+        border-bottom: 2px solid $red;
+      }
+    }
+  }
+
+  .gallery-content {
+    margin-top: 20px;
+
+
+    #photo, #video, #press {
+      display: none;
+      text-align: center;
+
+      &.active {
+        display: block
+      }
+
+      h1 {
+        text-align: center;
+      }
+    }
+  }
+
+  @include media-query($on-palm) {
+    padding: 8px;
+
+    .gallery-menu {
+      width: 270px;
+    }
+  }
+}
