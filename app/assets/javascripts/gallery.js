@@ -7,19 +7,29 @@ var allPhotos = ["IMG0456", "DSC00461", "DSC01000", "DSC01506", "DSC01718", "DSC
 
 document.addEventListener("turbolinks:load", function() {
   if (window.location.pathname === "/gallery") {
-    allGallery = new ImageGallery(allPhotos, "#all-photos").init();
-    sixteen = new ImageGallery(sixteen, "#sixteen").init();
-    fifteen = new ImageGallery(fifteen, "#fifteen").init();
+    var photoGallery = new ImageGallery();
+        photoGallery.addGallery("allPhotos");
+
+    $("[data-photo-link]").click(function() {
+      photoGallery.addGallery($(this).data("photo-link"));
+      showContentContainer($(this));
+    });
+
+    /// gallery logic ///
+    $("[data-gallery-link]").click(function(){
+      showContentContainer($(this));
+    });
   }
 
-  /// gallery logic ///
-  $("[data-gallery-link], [data-photo-link]").click(function(){
-    var contentContainer = $(this).parent().data("content-container")
-    var contentName = Object.keys($(this).data())[0];
-    var content = $(this).data(contentName);
-    $(this).siblings(".active").removeClass("active");
+  function showContentContainer(element) {
+    var contentContainer = element.parent().data("content-container")
+    var contentName = Object.keys(element.data())[0];
+    var content = element.data(contentName);
+    element.siblings(".active").removeClass("active");
     $(contentContainer).children(".active").removeClass("active");
-    $(""+content+"").addClass("active");
-    $(this).addClass("active")
-  });
+    $("#"+content+"").addClass("active");
+    element.addClass("active");
+  }
+
 });
+
