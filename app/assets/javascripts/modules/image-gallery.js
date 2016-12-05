@@ -10,15 +10,19 @@ function ImageGallery() {
         allPhotos: {},
         sixteen: {},
         fifteen: {},
-      };
+      },
+      currentGalleryData;
 
   this.addGallery = function(gallery) {
     if (Object.keys(galleryData[gallery]).length === 0) {
       createImageContainers(gallery);
+      setGallery(gallery);
       instantiateVars(gallery);
       setListeners(gallery);
+      activateImages();
+    } else {
+      setGallery(gallery);
     }
-    activeGallery = gallery;
   }
 
   function createImageContainers(gallery) {
@@ -28,13 +32,21 @@ function ImageGallery() {
     });
   }
 
+  function setGallery(gallery) {
+    activeGallery = gallery;
+    currentGalleryData = galleryData[activeGallery];
+  }
+
   function instantiateVars(gallery) {
-    galleryData[gallery]["photos"] = $("#"+gallery + ' .carousel-image-container div');
-    galleryData[gallery]["lastIndex"] = galleryData[gallery]["photos"].length - 1;
-    galleryData[gallery]["currentIndex"] = 0;
-    galleryData[gallery]["thumbs"] = $("#"+gallery + " .circle-container");
-    galleryData[gallery]["photos"].eq(currentIndex).show();
-    galleryData[gallery]["thumbs"].first().children().addClass("active-photo");
+    currentGalleryData["photos"] = $("#"+gallery + ' .carousel-image-container div');
+    currentGalleryData["lastIndex"] = currentGalleryData["photos"].length - 1;
+    currentGalleryData["currentIndex"] = 0;
+    currentGalleryData["thumbs"] = $("#"+gallery + " .circle-container");
+  }
+
+  function activateImages() {
+    currentGalleryData["photos"].eq(currentIndex).show();
+    currentGalleryData["thumbs"].first().children().addClass("active-photo");
   }
 
   function selectNextThumb(next) {
@@ -54,22 +66,22 @@ function ImageGallery() {
       $currentPhoto.hide();
       $currentPhoto.prev().show();
       selectNextThumb($nextThumb);
-      galleryData[activeGallery]["currentIndex"]--;
+      galleryData[activeGallery]["currentIndex"] -= 1;
     }
   }
 
   function showNext() {
-    var $currentPhoto = galleryData[activeGallery]["photos"].eq(galleryData[activeGallery]["currentIndex"]),
-        $nextThumb = galleryData[activeGallery]["thumbs"].eq(galleryData[activeGallery]["currentIndex"] + 1).children();
+    var $currentPhoto = currentGalleryData["photos"].eq(currentGalleryData["currentIndex"]),
+        $nextThumb = currentGalleryData["thumbs"].eq(currentGalleryData["currentIndex"] + 1).children();
     $currentPhoto.hide();
-    if (galleryData[activeGallery]["currentIndex"] === galleryData[activeGallery]["lastIndex"]) {
-      galleryData[activeGallery]["photos"].first().show();
-      selectNextThumb(galleryData[activeGallery]["thumbs"].first().children());
-      galleryData[activeGallery]["currentIndex"] = 0;
+    if (currentGalleryData["currentIndex"] === currentGalleryData["lastIndex"]) {
+      currentGalleryData["photos"].first().show();
+      selectNextThumb(currentGalleryData["thumbs"].first().children());
+      currentGalleryData["currentIndex"] = 0;
     } else {
       $currentPhoto.next().show();
       selectNextThumb($nextThumb);
-      galleryData[activeGallery]["currentIndex"]++;
+      currentGalleryData["currentIndex"] += 1;
     }
   }
 
@@ -78,17 +90,13 @@ function ImageGallery() {
       showNext();
     });
 
-    $("#"+gallery+ " .carousel-image-container").on("click", ".gallery-image", function() {
-      showNext();
-    });
-
     $("#" + gallery + " .photo-thumbnails").on("click", ".gallery-thumbnail", function() {
       var nextIndex = $(this).parent().index();
-      var $currentPhoto = galleryData[activeGallery]["photos"].eq(currentIndex);
+      var $currentPhoto = galleryData[activeGallery]["photos"].eq(galleryData[activeGallery]["currentIndex"]);
       $currentPhoto.hide();
-      $photos.eq(nextIndex).show();
+      galleryData[activeGallery]["photos"].eq(nextIndex).show();
       selectNextThumb(galleryData[activeGallery]["thumbs"].eq(nextIndex).children());
-      currentIndex = nextIndex;
+      galleryData[activeGallery]["currentIndex"] = nextIndex;
     });
   }
 
