@@ -1,0 +1,43 @@
+.well.gallery {
+
+  .gallery-content {
+
+    #video {
+
+      .mobile-video {
+        display: none;
+      }
+
+      .big-video {
+
+        iframe {
+          margin-bottom: 30px;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+
+      @include media-query($on-palm) {
+
+        .big-video {
+          display: none;
+        }
+
+        .mobile-video {
+          display: block;
+
+          iframe {
+            margin: 0 auto 15px auto;
+            display: block;
+
+            &:last-child {
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,14 +1,28 @@
 <div id="photo" class="active">
-  <div class="photo-display">
+  <div class="photo-menu" data-content-container=".photo-content">
+    <a class="item active" data-photo-link="allPhotos">All</a>
+    <a class="item" data-photo-link="sixteen">2016</a>
+    <a class="item" data-photo-link="fifteen">2015</a>
+  </div>
+  <div class="photo-content">
     <div class="carousel-button prev" data-carousel="prev">
       <i class="fa fa-angle-left" ></i>
     </div>
     <div class="carousel-button next" data-carousel="next">
       <i class="fa fa-angle-right " ></i>
     </div>
-    <div class="carousel-image-container">
+
+    <div id="allPhotos" class="photo-group active">
+      <div class="carousel-image-container"></div>
+      <div class="photo-thumbnails"></div>
     </div>
-    <div class="photo-thumbnails">
+    <div id="sixteen" class="photo-group">
+      <div class="carousel-image-container"></div>
+      <div class="photo-thumbnails"></div>
+    </div>
+    <div id="fifteen" class="photo-group">
+      <div class="carousel-image-container"></div>
+      <div class="photo-thumbnails"></div>
     </div>
   </div>
 </div>
