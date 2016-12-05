@@ -1,28 +1,31 @@
 function ImageGallery() {
   var photoGallery = {
     allPhotos: ["IMG0456", "DSC00461", "DSC01000", "DSC01506", "DSC01718", "DSC01723", "DSC01782", "DSC00635", "DSC02794", "DSC02850", "DSC02873", "DSC02879", "DSC02891", "IMG0119", "IMG0131", "IMG0148", "IMG0166", "IMG0170", "DSC00896", "IMG0174", "IMG0179", "IMG0267", "IMG0285", "IMG0363", "IMG0474", "IMG0488", "IMG0529", "IMG0668", "IMG0741"],
-    sixteen: ["IMG0456", "DSC02794", "DSC02850", "DSC02873", "DSC02879", "DSC02891", "IMG0119", "IMG0131", "IMG0148", "IMG0166", "IMG0170", , "IMG0174", "IMG0179", "IMG0267", "IMG0285", "IMG0363", "IMG0474", "IMG0488", "IMG0529", "IMG0668", "IMG0741"],
+    sixteen: ["IMG0363", "DSC02794", "DSC02850", "DSC02873", "DSC02879", "DSC02891", "IMG0119", "IMG0131", "IMG0148", "IMG0166", "IMG0170", , "IMG0174", "IMG0179", "IMG0267", "IMG0285", "IMG0456", "IMG0474", "IMG0488", "IMG0529", "IMG0668", "IMG0741"],
     fifteen: ["DSC00461", "DSC01000", "DSC01506", "DSC01718", "DSC01723", "DSC01782", "DSC00635", "DSC00896"],
   },
-      currentIndex = 0,
-      activeGallery = "allPhotos",
-      galleryData = {
-        allPhotos: {},
-        sixteen: {},
-        fifteen: {},
-      },
-      currentGalleryData;
+  galleryData = {
+    allPhotos: {},
+    sixteen: {},
+    fifteen: {},
+  },
+  activeGallery = "allPhotos",
+  currentGalleryData;
 
   this.addGallery = function(gallery) {
     if (Object.keys(galleryData[gallery]).length === 0) {
-      createImageContainers(gallery);
-      setGallery(gallery);
-      instantiateVars(gallery);
-      setListeners(gallery);
-      activateImages();
+      initializeGallery(gallery);
     } else {
       setGallery(gallery);
     }
+  }
+
+  function initializeGallery(gallery) {
+    createImageContainers(gallery);
+    setGallery(gallery);
+    instantiateVars(gallery);
+    setListeners(gallery);
+    activateImages();
   }
 
   function createImageContainers(gallery) {
@@ -45,7 +48,7 @@ function ImageGallery() {
   }
 
   function activateImages() {
-    currentGalleryData["photos"].eq(currentIndex).show();
+    currentGalleryData["photos"].eq(0).show();
     currentGalleryData["thumbs"].first().children().addClass("active-photo");
   }
 

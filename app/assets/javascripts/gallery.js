@@ -3,13 +3,14 @@ document.addEventListener("turbolinks:load", function() {
     var photoGallery = new ImageGallery();
     photoGallery.addGallery("allPhotos");
 
-    $("[data-photo-link]").click(function() {
-      photoGallery.addGallery($(this).data("photo-link"));
+    /// gallery menu ///
+    $("[data-gallery-link]").click(function(){
       showContentContainer($(this));
     });
 
-    /// gallery logic ///
-    $("[data-gallery-link]").click(function(){
+    /// photo menu ///
+    $("[data-photo-link]").click(function() {
+      photoGallery.addGallery($(this).data("photo-link"));
       showContentContainer($(this));
     });
   }
