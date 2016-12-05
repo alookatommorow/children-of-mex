@@ -1,25 +1,33 @@
-function ImageGallery() {
+function ImageGallery(imageNames, galleryId) {
 
   var currentIndex = 0,
-      imageNames =  ["IMG0456", "DSC00461", "DSC01000", "DSC01506", "DSC01718", "DSC01723", "DSC01782", "DSC00635", "DSC02794", "DSC02850", "DSC02873", "DSC02879", "DSC02891", "IMG0119", "IMG0131", "IMG0148", "IMG0166", "IMG0170", "DSC00896", "IMG0174", "IMG0179", "IMG0267", "IMG0285", "IMG0363", "IMG0474", "IMG0488", "IMG0529", "IMG0668", "IMG0741"],
+      active = false,
       $photos,
       lastIndex,
       $thumbs;
 
   this.init = function() {
+    populate();
+    instantiateVars();
+  }
+
+  function populate() {
     imageNames.forEach(function (image) {
-      $(".carousel-image-container").append("<div class='gallery-image'><img src='"+generateUrl(image)+"'></div>")
-      $(".photo-thumbnails").append("<div class='circle-container'><div class='circle gallery-thumbnail'></div></div>")
-    })
-    $photos = $('.carousel-image-container div');
+      $(galleryId).children(".carousel-image-container").append("<div class='gallery-image'><img src='"+generateUrl(image)+"'></div>");
+      $(galleryId).children(".photo-thumbnails").append("<div class='circle-container'><div class='circle gallery-thumbnail'></div></div>")
+    });
+  }
+
+  function instantiateVars() {
+    $photos = $(galleryId + ' .carousel-image-container div');
     lastIndex = $photos.length - 1;
-    $thumbs = $(".circle-container");
+    $thumbs = $(galleryId + " .circle-container");
     $photos.eq(currentIndex).show();
     $thumbs.first().children().addClass("active-photo");
   }
 
   function selectNextThumb(next) {
-    $(".active-photo").removeClass("active-photo");
+    $(galleryId+" .active-photo").removeClass("active-photo");
     next.addClass("active-photo");
   }
 
@@ -55,19 +63,22 @@ function ImageGallery() {
     }
   }
 
-  $(".carousel-button").click(function(){
-    if ($(this).data("carousel") === "prev") {
-      showPrev();
-    } else {
-      showNext();
-    }
+  $(" .carousel-button").click(function() {
+    // console.log($(".photo-group.active").attr("id"))
+    if ("#"+$(".photo-group.active").attr("id") === galleryId) {
+      if ($(this).data("carousel") === "prev") {
+        showPrev();
+      } else {
+        showNext();
+      }
+    };
   });
 
-  $(".photo-display").on("click", ".gallery-image", function() {
+  $(galleryId + " .carousel-image-container").on("click", ".gallery-image", function() {
     showNext();
   });
 
-  $(".photo-display").on("click", ".gallery-thumbnail", function() {
+  $(galleryId + " .photo-thumbnails").on("click", ".gallery-thumbnail", function() {
     nextIndex = $(this).parent().index();
     var $currentPhoto = $photos.eq(currentIndex);
     $currentPhoto.hide();
@@ -79,17 +90,19 @@ function ImageGallery() {
   //key navigation logic
   if ($("#photo").hasClass("active")) {
     $(document).on('keydown', function(event) {
-      event = event || window.event;
-      switch(event.which || event.keyCode) {
-        case 37: // left
-          showPrev();
-        break;
+      if ("#"+$(".photo-group.active").attr("id") === galleryId) {
+        event = event || window.event;
+        switch(event.which || event.keyCode) {
+          case 37: // left
+            showPrev();
+          break;
 
-        case 39: //right
-          showNext();
-        break;
+          case 39: //right
+            showNext();
+          break;
 
-        default: return; // exit this handler for other keys
+          default: return; // exit this handler for other keys
+        }
       }
     });
   }
