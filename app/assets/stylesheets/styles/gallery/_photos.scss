@@ -4,10 +4,40 @@
 
     #photo {
 
-      .photo-display {
+      .photo-menu {
+        width: 300px;
+        margin: 0 auto;
+        min-height: 2.85714286em;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+        .item {
+          width: 25%;
+          text-align: center;
+          justify-content: center;
+          font-size: 18px;
+
+          &.active {
+            border-bottom: 2px solid $red;
+          }
+        }
+      }
+
+      .photo-content {
         margin: 0 auto;
         width: 100%;
         position: relative;
+
+        .photo-group {
+          display: none;
+          text-align: center;
+
+          &.active {
+            display: block
+          }
+        }
+
 
         .carousel-button {
           position: absolute;

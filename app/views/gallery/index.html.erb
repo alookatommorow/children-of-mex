@@ -3,10 +3,10 @@
     <h1>
       <div class="horizontal divider">Gallery</div>
     </h1>
-    <div class="gallery-menu">
-      <a class="item active" data-media-link="#photo">Photos</a>
-      <a class="item" data-media-link="#video">Videos</a>
-      <a class="item" data-media-link="#press">Press</a>
+    <div class="gallery-menu" data-content-container=".gallery-content">
+      <a class="item active" data-gallery-link="#photo">Photos</a>
+      <a class="item" data-gallery-link="#video">Videos</a>
+      <a class="item" data-gallery-link="#press">Press</a>
     </div>
     <div class="gallery-content">
       <%= render partial: "photos" %>
