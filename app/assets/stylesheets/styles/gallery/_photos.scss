@@ -96,11 +96,11 @@
           width: 100%;
 
           .circle {
-            border: 2px solid $blue;
+            border-color: $blue;
 
             &.active-photo {
               background-color: $blue;
-              border: 2px solid $red;
+              border-color: $red;
             }
           }
         }
@@ -120,7 +120,6 @@
 
           .photo-thumbnails {
             justify-content: center;
-            // width: 450px;
 
             .circle-container {
               margin: 10px;
@@ -163,7 +162,6 @@
           }
 
           .photo-thumbnails {
-            // width: 240px;
 
             .circle-container {
               margin: 7px;
