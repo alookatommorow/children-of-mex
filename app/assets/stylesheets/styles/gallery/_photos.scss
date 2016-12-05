@@ -91,15 +91,16 @@
           padding: 10px;
           display: flex;
           align-items: center;
-          justify-content: space-around;
+          justify-content: space-between;
           flex-wrap: wrap;
-          width: 800px;
+          width: 100%;
 
           .circle {
-            background-color: $light-blue;
+            border: 2px solid $blue;
 
             &.active-photo {
               background-color: $blue;
+              border: 2px solid $red;
             }
           }
         }
@@ -118,7 +119,8 @@
           }
 
           .photo-thumbnails {
-            width: 450px;
+            justify-content: center;
+            // width: 450px;
 
             .circle-container {
               margin: 10px;
@@ -161,7 +163,7 @@
           }
 
           .photo-thumbnails {
-            width: 240px;
+            // width: 240px;
 
             .circle-container {
               margin: 7px;
