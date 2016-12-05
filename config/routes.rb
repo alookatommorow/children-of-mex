@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get "faq", to: "faq#index"
   get "gallery", to: "gallery#index"
   get "news", to: "news#index"
+  get "testimonials", to: "testimonials#index"
 
   resources :donations, only: [:new, :create]
 
