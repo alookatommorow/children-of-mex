@@ -1,14 +1,18 @@
 var crossFaderRunning = false,
-    crossFader;
+    haveCrossFader = false,
+    COMIcrossFader;
 
 document.addEventListener("turbolinks:load", function() {
   if (window.location.pathname === "/about") {
-    crossFader = new crossFader();
-    crossFader.init();
+    if (!haveCrossFader) {
+      COMIcrossFader = new crossFader();
+      haveCrossFader = true;
+    }
+    COMIcrossFader.init();
     crossFaderRunning = true;
   } else {
     if (crossFaderRunning) {
-      crossFader.stop();
+      COMIcrossFader.stop();
       crossFaderRunning = false;
     }
   }
