@@ -1,0 +1,28 @@
+.fa-quote-left {
+  color: $red;
+  float: left;
+  margin-right: 10px;
+}
+
+.quote {
+  padding: 5px 20px 5px 20px;
+  margin-bottom: 15px;
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  .fa-quote-right {
+    color: $red;
+    padding-left: 7px;
+    transform: translateY(-6px);
+  }
+
+}
+
+.quote-credit {
+  padding-left: 20px;
+  font-weight: bold;
+  font-size: 19px;
+  color: $blue;
+}
