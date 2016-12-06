@@ -14,13 +14,27 @@
     </div>
     <input type="checkbox" id="show-menu" role=button>
     <div class="items">
-      <a class="item nav-item" href="/"><p>Home</p></a>
-      <a class="item nav-item" href="/about"><p>About</p></a>
-      <a class="item nav-item" href="/news"><p>News/Events</p></a>
-      <a class="item nav-item" href="/gallery"><p>Gallery</p></a>
-      <a class="item nav-item" href="/contact"><p>Contact</p></a>
-      <a class="item nav-item" href="/faq"><p>FAQ</p></a>
-      <a class="item nav-item" href="/testimonials"><p>Testimonials</p></a>
+      <%= link_to root_path, class: "item nav-item" do %>
+        <p>Home</p>
+      <% end %>
+      <%= link_to page_path('about'), class: "item nav-item" do %>
+        <p>About</p>
+      <% end %>
+      <%= link_to page_path('gallery'), class: "item nav-item" do %>
+        <p>Gallery</p>
+      <% end %>
+      <%= link_to page_path('news'), class: "item nav-item"  do %>
+        <p>News/Events</p>
+      <% end %>
+      <%= link_to page_path('contact'), class: "item nav-item"  do %>
+        <p>Contact</p>
+      <% end %>
+      <%= link_to page_path('faq'), class: "item nav-item"  do %>
+        <p>FAQ</p>
+      <% end %>
+      <%= link_to page_path('testimonials'), class: "item nav-item"  do %>
+        <p>Testimonials</p>
+      <% end %>
     </div>
   </nav>
 </header>
