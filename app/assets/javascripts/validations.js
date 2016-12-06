@@ -20,7 +20,7 @@ var validationTypes = {
 
   amount: {
     prompt: "Please enter an amount",
-    counterpart: "[placeholder='25']",
+    counterpart: "[placeholder='100']",
     validator: "empty"
   }
 }
