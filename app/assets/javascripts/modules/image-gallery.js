@@ -1,13 +1,13 @@
 function ImageGallery() {
   var photoGallery = {
     allPhotos: ["IMG0456", "DSC00461", "DSC01000", "DSC01506", "DSC01718", "DSC01723", "DSC01782", "DSC00635", "DSC02794", "DSC02850", "DSC02873", "DSC02879", "DSC02891", "IMG0119", "IMG0131", "IMG0148", "IMG0166", "IMG0170", "DSC00896", "IMG0174", "IMG0179", "IMG0267", "IMG0285", "IMG0363", "IMG0474", "IMG0488", "IMG0529", "IMG0668", "IMG0741"],
-    sixteen: ["IMG0363", "DSC02794", "DSC02850", "DSC02873", "DSC02879", "DSC02891", "IMG0119", "IMG0131", "IMG0148", "IMG0166", "IMG0170", , "IMG0174", "IMG0179", "IMG0267", "IMG0285", "IMG0456", "IMG0474", "IMG0488", "IMG0529", "IMG0668", "IMG0741"],
+    sixteen: ["IMG0363", "DSC02794", "DSC02850", "DSC02873", "DSC02879", "DSC02891", "IMG0119", "IMG0131", "IMG0148", "IMG0166", "IMG0170", "IMG0174", "IMG0179", "IMG0267", "IMG0285", "IMG0456", "IMG0474", "IMG0488", "IMG0529", "IMG0668", "IMG0741"],
     fifteen: ["DSC00461", "DSC01000", "DSC01506", "DSC01718", "DSC01723", "DSC01782", "DSC00635", "DSC00896"],
   },
   galleryData = {
     allPhotos: {},
     sixteen: {},
-    fifteen: {},
+    fifteen: {}
   },
   activeGallery = "allPhotos",
   currentGalleryData;
@@ -110,7 +110,7 @@ function ImageGallery() {
       } else {
         showNext();
       }
-    };
+    }
   });
 
   //key navigation logic
