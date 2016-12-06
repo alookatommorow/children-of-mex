@@ -17,16 +17,18 @@
   z-index: 999;
   height: 100px;
 
-  img {
-    position: absolute;
-    height: 80px;
-    top: 50%;
-    transform: translateY(-50%);
-  }
+
 
   .menu {
     margin: 0em;
     padding-left: 20px;
+
+    img {
+      position: absolute;
+      height: 80px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
 
     .fa {
       display: none;

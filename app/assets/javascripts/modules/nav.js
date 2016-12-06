@@ -2,12 +2,14 @@ document.addEventListener("turbolinks:load", function() {
   var pageIndex = {
     "/contact": "Contact",
     "/": "Home",
-    "/faq": "Volunteer FAQ",
+    "/faq": "FAQ",
     "/about": "About",
     "/gallery": "Gallery",
-    "/news": "News and Events"
-  }
-  var pageTitle = pageIndex[window.location.pathname];
+    "/news": "News/Events",
+    "/testimonials": "Testimonials"
+  },
+  pageTitle = pageIndex[window.location.pathname];
+
   $("a:contains("+pageTitle+")").addClass("active");
 
   /// toggle nav menu caret display ////
