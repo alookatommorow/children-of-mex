@@ -40,9 +40,11 @@ end
 group :test do
   gem "capybara"
   gem "capybara-webkit"
+  gem "codeclimate-test-reporter", "~> 1.0.0"
   gem "factory_girl_rails"
   gem "database_cleaner"
   gem "rake"
+  gem "simplecov"
   gem "webmock"
 end
 
