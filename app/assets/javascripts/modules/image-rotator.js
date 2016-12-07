@@ -35,7 +35,7 @@ function ImageRotator() {
     }
     currentUrl = generateUrl(imageNames[currentIndex]);
     animate(currentUrl);
-  };
+  }
 
   $(".circle").click(function(){
     $container.finish();
