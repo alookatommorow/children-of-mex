@@ -1,6 +1,7 @@
 document.addEventListener("turbolinks:load", function() {
   var pageIndex = {
     "/contact": "Contact",
+    "/apply": "Apply",
     "/": "Home",
     "/faq": "FAQ",
     "/about": "About",
