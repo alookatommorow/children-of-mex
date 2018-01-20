@@ -12,7 +12,11 @@
 </head>
 <body>
   <%= render partial: "nav" %>
-  <%= render partial: "donate_button" %>
+  <div class="buttons-container">
+    <%= render partial: "apply_button" %>
+    <%= render partial: "donate_button" %>
+  </div>
+  
   <div class="page-content">
     <%= yield %>
   </div>
