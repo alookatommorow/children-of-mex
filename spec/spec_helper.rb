@@ -25,21 +25,15 @@ require 'bundler/setup'
 Bundler.require
 require 'pry-byebug'
 require 'capybara/rspec'
-require 'capybara/webkit'
 require 'database_cleaner'
 require 'webmock/rspec'
 
 WebMock.disable_net_connect!(allow_localhost: true)
 
-# use `describe 'Feature', type: :feature, js: true` to use this driver
-Capybara.javascript_driver = :webkit
 
 # tests use regular (faster) driver if they don't require js
 Capybara.default_driver = :rack_test
 
-Capybara::Webkit.configure do |config|
-  config.allow_unknown_urls
-end
 
 RSpec.configure do |config|
   config.after(:suite) do

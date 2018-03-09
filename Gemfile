@@ -1,14 +1,14 @@
 source "https://rubygems.org"
-ruby "2.2.3"
+ruby "2.4.2"
 
-gem "rails", "5.0.0.1"
+gem "rails", "5.0.2"
 
 gem "awesome_print"
 gem "bcrypt"
 gem "font-awesome-rails"
 gem "high_voltage"
 gem "jquery-rails"
-gem "pg"
+gem "pg", ">= 0.18", "< 1.0"
 gem "puma"
 gem "sass-rails"
 gem "sprockets-rails"
@@ -39,7 +39,6 @@ end
 
 group :test do
   gem "capybara"
-  gem "capybara-webkit"
   gem "codeclimate-test-reporter", "~> 1.0.0"
   gem "factory_girl_rails"
   gem "database_cleaner"
