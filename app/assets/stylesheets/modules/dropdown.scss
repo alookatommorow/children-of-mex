@@ -34,7 +34,12 @@
         display: none;
     }
 
-    
+    i {
+        top: 50%;
+        transform: translateY(-50%);
+        right: 10px;
+        position: absolute;
+    }
 
     .ax-select-selected {
         border: 1px solid rgba(34, 36, 38, 0.15);
