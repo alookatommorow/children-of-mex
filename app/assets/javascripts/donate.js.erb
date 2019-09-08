@@ -1,14 +1,31 @@
 document.addEventListener("turbolinks:load", function() {
 
   if (window.location.pathname === "/donations/new") {
+    new AxDropdown().init();
     var handler;
 
-    $(".amount-form").submit(function (event) {
-      event.preventDefault();
+    var $otherField = $(".other-amount");
 
+    $("body").on('DOMSubtreeModified', ".ax-select-selected", function() {
+        if (this.innerHTML === "Other amount") {
+          return $otherField.show();
+        }
+
+        $otherField.hide();
+    });
+
+    $(".amount-form").submit(function(event) {
+      event.preventDefault();
       var validation = new FormValidator(this).validateForm();
-      var amount = $("input[name=amount]").val();
-      var name = $("input[name=amount]").val();
+      var selected = $(".ax-select-selected").html();
+      var amount;
+      
+      if (selected === 'Other amount') {
+        amount = $("input[name=amount]").val();
+      } else {
+        amount = selected.substr(1);
+      }
+      
       var parsedAmount = parseFloat(amount) * 100;
 
       // configure stripe handler
