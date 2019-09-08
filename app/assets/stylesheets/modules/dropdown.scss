@@ -1,0 +1,149 @@
+@mixin psuedo-checkbox($before, $after-right, $after-top) {
+    &:before,
+    &:after {
+      content: "";
+      display: inline-block;
+      position: absolute;
+    }
+  
+    &:before {
+      top: $before;
+      right: $before;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: green;
+    }
+  
+    &:after {
+      top: $after-top;
+      right: $after-right;
+      width: 4px;
+      height: 7px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+}
+
+.ax-select-dropdown {
+    position: relative;
+    width: 100%;
+
+    select {
+        display: none;
+    }
+
+    
+
+    .ax-select-selected {
+        border: 1px solid rgba(34, 36, 38, 0.15);
+        background-color: white;
+        border-radius: 4px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        transition: all 0.3s ease;
+        padding: 0 16px 0 24px;
+
+        @include media-query($on-palm) {
+            height: 40px;
+            padding: 0 16px 0 16px;
+        }
+
+        &.placeholder {
+            color: rgba(34, 36, 38, 0.45);
+        }
+
+        &.error {
+            background: #fff6f6;
+            border-color: #e0b4b4;
+            color: #9f3a38;
+            border-radius: '';
+            box-shadow: none;
+          }
+
+        &.ax-option-selected {
+            color: initial;
+        }
+
+        &:before {
+            content: "";
+            border-width: 0 1px 1px 0;
+            display: inline-block;
+            padding: 4px;
+            transform: translateY(-50%) rotate(45deg);
+            position: absolute;
+            top: 50%;
+            right: 18px;
+            transition: all 0.3s ease;
+        }
+
+        &.ax-select-arrow-active {
+            color: initial;
+            box-shadow: none;
+
+            &:before {
+                transform: rotate(-135deg);
+            }
+        }
+    }
+
+
+    .ax-select-items div,
+    .ax-select-selected {
+        cursor: pointer;
+    }
+
+    .ax-select-items {
+        position: absolute;
+        background-color: white;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 101;
+        margin-top: 8px;
+        box-shadow: 0 8px 16px 0 rgba(56, 54, 64, 0.08);
+        border-radius: 4px;
+        transition: all 0.3s ease 0s;
+        border: 1px solid  rgba(34, 36, 38, 0.15);
+
+
+        div {
+            margin-left: 8px;
+            margin-right: 8px;
+            border-radius: 4px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+
+            &:first-child {
+            margin-top: 16px;
+            }
+
+            &:last-child {
+            margin-bottom: 16px;
+            }
+
+            &:hover {
+                background-color: $gray;
+            }
+        }
+    }
+
+    .ax-select-hide {
+        display: none;
+    }
+
+    .ax-same-as-selected {
+        position: relative;
+        background: rgba(34, 36, 38, 0.15);
+
+        @include psuedo-checkbox(16px, 22px, 16px);
+
+        &:before {
+            top: 12px;
+        }
+    }
+}
