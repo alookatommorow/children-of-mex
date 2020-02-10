@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 ruby "2.4.2"
 
-gem "rails", "5.0.2"
+gem "rails", "5.2.4.1"
 
 gem "awesome_print"
 gem "bcrypt"
@@ -46,4 +46,3 @@ group :test do
   gem "simplecov"
   gem "webmock"
 end
-
